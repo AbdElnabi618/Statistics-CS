@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <item
+        android:id="@+id/homeScreen"
+        android:title="All Data" />
+
+<item android:title="Subject">
+    <menu android:checkableBehavior="single">
+        <item
+            android:id="@+id/Mechanics"
+            android:title="Mechanics 4" />
+        <item
+            android:id="@+id/Statistics"
+            android:title="Statistics" />
+        <item
+            android:id="@+id/Geometry"
+            android:title="Solid Analytic Geometry" />
+        <item
+            android:id="@+id/Algebra"
+            android:title="Linear Algebra 1" />
+            <item
+                android:id="@+id/Analysis"
+                android:title="Real Analysis	" />
+            <item
+                android:id="@+id/Biology"
+                android:title="Mathematical Biology	" />
+        </menu>
+    </item>
+
+</menu>

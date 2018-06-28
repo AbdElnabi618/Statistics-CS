@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/DarkBlue"
+        android:text="About"
+        android:textSize="25dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/redLight"
+        android:text="@string/Message"
+        android:textSize="20dp"
+        android:padding="8dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact with me"
+        android:background="@color/DarkBlue"
+        android:id="@+id/contact"
+        android:onClick="contact"/>
+</LinearLayout>
