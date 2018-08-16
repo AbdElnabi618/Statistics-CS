@@ -64,31 +64,31 @@ public class InternalDB extends SQLiteOpenHelper {
     }
 
     //get  Details from db
-    public ArrayList getStatistics(String type) {
+    public ArrayList<SubjectDetails> getStatistics(String type) {
         return getInformation("Statistics", type);
     }
 
-    public ArrayList getMechanics(String type) {
+    public ArrayList<SubjectDetails> getMechanics(String type) {
         return getInformation("Mechanics", type);
     }
-    public ArrayList getMathematical_Biology(String type) {
+    public ArrayList<SubjectDetails> getMathematical_Biology(String type) {
         return getInformation("Mathematical-Biology", type);
     }
 
-    public ArrayList getLinear_Algebra(String type) {
+    public ArrayList<SubjectDetails> getLinear_Algebra(String type) {
         return getInformation("Linear-Algebra", type);
     }
-    public ArrayList getReal_Analysis(String type) {
+    public ArrayList<SubjectDetails> getReal_Analysis(String type) {
         return getInformation("Real-Analysis", type);
     }
 
-    public ArrayList getGeometry(String type) {
+    public ArrayList<SubjectDetails> getGeometry(String type) {
         return getInformation("Geometry", type);
     }
 
 
     public ArrayList<SubjectDetails> getInformation(String subjectName, String subjectType) {
-        ArrayList<SubjectDetails> arrayList = new ArrayList();
+        ArrayList<SubjectDetails> arrayList = new ArrayList<SubjectDetails>();
         db = this.getReadableDatabase();
         cursor = db.rawQuery("select * from subject where subjectName='" + subjectName
                 + "' AND subjectType='" + subjectType + "'", null);
@@ -100,7 +100,7 @@ public class InternalDB extends SQLiteOpenHelper {
         return arrayList;
     }
 
-    public ArrayList getAllInformation() {
+    public ArrayList<SubjectDetails> getAllInformation() {
         ArrayList arrayList = new ArrayList();
         db = this.getReadableDatabase();
         cursor = db.rawQuery("select * from subject", null);

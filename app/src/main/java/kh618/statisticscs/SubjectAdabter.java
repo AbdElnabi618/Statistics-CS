@@ -67,7 +67,7 @@ public class SubjectAdabter extends ArrayAdapter<SubjectDetails> {
                 public void onClick(View view) {
                       if (isNetworkAvailable()) {
                           final  DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                          Uri uri = Uri.parse("http://statcs-cs.me/uploads/" + subjectDetails.getfile());
+                          Uri uri = Uri.parse(context.getResources().getString(R.string.downloadLink) + subjectDetails.getfile());
                           DownloadManager.Request request = new DownloadManager.Request(uri);
                           request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                           downloadManager.enqueue(request);

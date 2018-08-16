@@ -9,4 +9,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Message">App developed by Khaled Abd-Elnabi \n It\'s for Level two Department of (Statistics and Computer Science) and Mathematics, Faculty of Science, Mansoura University \n
  For any question or any error contact with me.</string>
+
+    <string name="informationLink">https://muscly-berths.000webhostapp.com/api_posts.php</string>
+    <string name="downloadLink">https://muscly-berths.000webhostapp.com/uploads/</string>
 </resources>

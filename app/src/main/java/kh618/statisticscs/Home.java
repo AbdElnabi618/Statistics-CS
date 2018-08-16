@@ -9,6 +9,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.LiveFolders;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -40,6 +42,8 @@ public class Home extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         i = R.id.homeScreen;
+
+        //Todo take a permission to write in storage
 
         title = findViewById(R.id.title);
 
@@ -82,39 +86,65 @@ public class Home extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.refresh) {
             if (isNetworkAvailable()) {
-                Thread thread = new Thread(){
+//                Thread thread = new Thread(){
+//                    @Override
+//                    public void run() {
+//                        super.run();
+//                        try {
+//                            new ConnectDB(Home.this,
+//                                    getResources().getString(R.string.informationLink)).execute();
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        finally {
+//                            Intent intent = new Intent(Home.this,Home.class);
+//
+//                            startActivity(intent);
+//
+//
+//                        }
+//                    }
+//                };
+//                thread.start();
+                Handler h = new Handler();
+                h.postAtTime(new Runnable() {
                     @Override
                     public void run() {
-                        super.run();
                         try {
-                            new ConnectDB(Home.this, "http://statcs-cs.me/api_posts.php").execute();
+                            new ConnectDB(Home.this,
+                                    getResources().getString(R.string.informationLink)).execute();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        finally {
-                            openFreg(i);
-                        }
                     }
-                };
-                thread.start();
+                }, 2000);
+
+                h.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        openFreg(i);
+                        Toast.makeText(Home.this, "refreshed", Toast.LENGTH_SHORT).show();
+                    }
+                }, 2000);
+
             } else {
                 Toast.makeText(this, "no internet connection please connect to internet and try again",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
             }
             return true;
-        }else if(id == R.id.about){
+        } else if (id == R.id.about) {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
-            builder.setView(inflater.inflate(R.layout.dailog,null))
-                   .create().show();
+            builder.setView(inflater.inflate(R.layout.dailog, null))
+                    .create().show();
+
             return true;
         }
         return false;
@@ -173,5 +203,10 @@ public class Home extends AppCompatActivity
     public void download(View view){
         Button button = (Button) view;
         Toast.makeText(this,"", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 }

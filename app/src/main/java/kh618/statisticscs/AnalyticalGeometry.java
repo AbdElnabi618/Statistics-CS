@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class AnalyticalGeometry extends android.support.v4.app.Fragment {
     //get ' Analytical Geometry ' lecture and section
     ViewPag  pag;
-    SubjectAdabter adapterLecture;
-    SubjectAdabter adapterSection;
+    SubjectRecyclerAdapter adapterLecture;
+    SubjectRecyclerAdapter adapterSection;
     InternalDB db ;
     View v;
     ViewPager viewPager;
@@ -26,8 +26,8 @@ public class AnalyticalGeometry extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_analytical_geometry,container,false);
         db = new InternalDB(v.getContext());
-        adapterLecture = new SubjectAdabter(getContext(),R.layout.subject_list,db.getGeometry("Lecture"));
-        adapterSection = new SubjectAdabter(getContext(),R.layout.subject_list,db.getGeometry("Section"));
+        adapterLecture = new SubjectRecyclerAdapter(getContext(),db.getGeometry("Lecture"));
+        adapterSection = new SubjectRecyclerAdapter(getContext(),db.getGeometry("Section"));
          viewPager = v.findViewById(R.id.view);
         pag = new ViewPag(v.getContext(),adapterLecture);
         viewPager.setAdapter(pag);
@@ -42,12 +42,12 @@ public class AnalyticalGeometry extends android.support.v4.app.Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition() == 0){
                     pag.setAdabter(adapterLecture);
-                    if(adapterLecture.getCount() <= 0)
+                    if(adapterLecture.getItemCount() <= 0)
                         Snackbar.make(v, "No " + tab.getText() + " found", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(tab.getPosition() == 1){
                     pag.setAdabter(adapterSection);
-                    if(adapterSection.getCount() <= 0)
+                    if(adapterSection.getItemCount() <= 0)
                         Snackbar.make(v, "No " + tab.getText() + " found", Snackbar.LENGTH_SHORT).show();
 
                 }

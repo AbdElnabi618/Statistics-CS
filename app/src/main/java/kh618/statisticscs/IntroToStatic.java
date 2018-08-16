@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public class IntroToStatic extends Fragment {
     ViewPag  pag;
-    SubjectAdabter adabter;
-    SubjectAdabter adabter2;
+    SubjectRecyclerAdapter adabter;
+    SubjectRecyclerAdapter adabter2;
     InternalDB db ;
     View v;
     ViewPager viewPager;
@@ -33,8 +33,8 @@ public class IntroToStatic extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          v = inflater.inflate(R.layout.activity_intro_to_static, container, false);
         db = new InternalDB(v.getContext());
-        adabter = new SubjectAdabter(getContext(),R.layout.subject_list,db.getStatistics("Lecture"));
-        adabter2 = new SubjectAdabter(getContext(),R.layout.subject_list,db.getStatistics("Section"));
+        adabter = new SubjectRecyclerAdapter(getContext(),db.getStatistics("Lecture"));
+        adabter2 = new SubjectRecyclerAdapter(getContext(),db.getStatistics("Section"));
 
          viewPager = v.findViewById(R.id.view);
         pag = new ViewPag(v.getContext(),adabter);
@@ -50,12 +50,12 @@ public class IntroToStatic extends Fragment {
 
                 if(tab.getPosition() == 0){
                     pag.setAdabter(adabter);
-                    if(adabter.getCount() <= 0)
+                    if(adabter.getItemCount() <= 0)
                         Snackbar.make(v, "No " + tab.getText() + " found", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(tab.getPosition() == 1){
                     pag.setAdabter(adabter2);
-                    if(adabter2.getCount() <= 0)
+                    if(adabter2.getItemCount() <= 0)
                         Snackbar.make(v, "No " + tab.getText() + " found", Snackbar.LENGTH_SHORT).show();
 
                 }

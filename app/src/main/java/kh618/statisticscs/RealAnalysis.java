@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class RealAnalysis extends android.support.v4.app.Fragment {
     ViewPag  pag;
-    SubjectAdabter adabter;
-    SubjectAdabter adabter2;
+    SubjectRecyclerAdapter adabter;
+    SubjectRecyclerAdapter adabter2;
     InternalDB db ;
     View v;
     ViewPager viewPager;
@@ -28,8 +28,8 @@ public class RealAnalysis extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          v = inflater.inflate(R.layout.activity_real_analysis,container,false);
         db = new InternalDB(v.getContext());
-        adabter = new SubjectAdabter(getContext(),R.layout.subject_list,db.getReal_Analysis("Lecture"));
-        adabter2 = new SubjectAdabter(getContext(),R.layout.subject_list,db.getReal_Analysis("Section"));
+        adabter = new SubjectRecyclerAdapter(getContext(),db.getReal_Analysis("Lecture"));
+        adabter2 = new SubjectRecyclerAdapter(getContext(),db.getReal_Analysis("Section"));
 
          viewPager = v.findViewById(R.id.view);
         pag = new ViewPag(v.getContext(),adabter);
@@ -45,12 +45,12 @@ public class RealAnalysis extends android.support.v4.app.Fragment {
 
                 if(tab.getPosition() == 0){
                     pag.setAdabter(adabter);
-                    if(adabter.getCount() <= 0)
+                    if(adabter.getItemCount() <= 0)
                         Snackbar.make(v, "No " + tab.getText() + " found", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(tab.getPosition() == 1){
                     pag.setAdabter(adabter2);
-                    if(adabter2.getCount() <= 0)
+                    if(adabter2. getItemCount() <= 0)
                         Snackbar.make(v, "No " + tab.getText() + " found", Snackbar.LENGTH_SHORT).show();
 
                 }

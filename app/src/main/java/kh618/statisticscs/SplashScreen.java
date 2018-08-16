@@ -27,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         an = AnimationUtils.loadAnimation(this,R.anim.logoanimition);
         anDisapper = AnimationUtils.loadAnimation(this,R.anim.disapper);
         if(isNetworkAvailable()) {
-            new ConnectDB(this, "http://statcs-cs.me/api_posts.php").execute();
+            new ConnectDB(this, getResources().getString(R.string.informationLink)).execute();
         }
         else{
             Toast.makeText(this,"no internet connection",Toast.LENGTH_SHORT).show();
@@ -54,7 +54,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Toast.makeText(this,"هتوحشنا :') ..",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"We 'll miss you ..",Toast.LENGTH_SHORT).show();
         finish();
     }
 
